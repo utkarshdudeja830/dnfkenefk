@@ -12,11 +12,12 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install django-crispy-forms PIL
-RUN python django_web_app/manage.py makemigrations migrate
+RUN pip install django-crispy-forms Pillow
+RUN python manage.py makemigrations
+RUN python manage.py migrate
 
 # Expose port 8000 to the outside world
-EXPOSE 8000
+#EXPOSE 8000
 
 # Run Django's development server when the container launches
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

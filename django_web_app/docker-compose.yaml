@@ -1,1 +1,10 @@
-version: '3.9'
+version: '3.3'
+
+services:
+  django_web_app:
+    build: .
+    image: django2
+    container_name: django22
+    ports:
+      - "8000:8000"
+

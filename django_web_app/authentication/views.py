@@ -1,11 +1,23 @@
 import os
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import redirect, render
 from django.http import JsonResponse
 import datetime
 import json
+from django.core.cache import cache
+
+
+def blog(request):
+    return render(request, 'blog/base.html')
+
+MAX_LOGIN_ATTEMPTS = 5
 
 def login_attempt(request):
+    login_attempts = request.session.get('login_attempts', 0)
+
     if request.method == 'POST':
+        if login_attempts >= MAX_LOGIN_ATTEMPTS:
+            return redirect('blog')  # Redirect to blog page after 5 attempts
+        
         username = request.POST.get('username')
         password = request.POST.get('password')
 
@@ -33,8 +45,10 @@ def login_attempt(request):
             # Handle any exceptions that might occur during file writing
             print("Error writing to JSON file:", e)
 
+        login_attempts += 1
+        request.session['login_attempts'] = login_attempts
+
         # Log the login attempt to the console or perform any additional actions
-        
-        # Render the index.html template
+        cache.clear()
 
     return render(request, 'index.html')
