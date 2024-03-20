@@ -12,7 +12,7 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install django-crispy-forms 
+RUN pip install django-crispy-forms PIL
 RUN python django_web_app/manage.py makemigrations migrate
 
 # Expose port 8000 to the outside world

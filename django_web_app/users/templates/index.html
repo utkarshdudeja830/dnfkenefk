@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 94vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+
+        label {
+            display: none; /* Hide labels */
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 17px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            color: #333; /* Added to set text color */
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #aaa; /* Make placeholder text grey */
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #007bff; /* Changed to blue */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="post">
+        <h1>Sign In</h1> <!-- Moved Sign In text above the box -->
+        {% csrf_token %}
+        <label for="username">Username or Email:</label>
+        <input type="text" id="username" name="username" placeholder="Username or Email" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Password" required><br><br>
+        <button type = "submit"><a href = "/blog">Sign in</a></button>
+        </form>
+
+</body>
+</html>
